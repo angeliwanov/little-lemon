@@ -1,0 +1,36 @@
+nav {
+  margin: 10px; 
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hamburger-icon {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+}
+
+@media (max-width: 860px) {
+  .menu {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .menu {
+    display: none;
+  }
+
+  .hamburger-icon {
+    display: flex;
+  }
+
+  .menu.active {
+    display: flex;
+    flex-direction: column;
+  }
+}

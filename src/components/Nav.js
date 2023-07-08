@@ -1,7 +1,20 @@
+import "../styles/Nav.css";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { useState } from "react";
+
 const Nav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <nav>
-      <ul>
+      <div className="hamburger-icon" onClick={handleToggle}>
+        {isOpen ? <FaTimes /> : <FaBars />}
+      </div>
+      <ul className={`menu ${isOpen ? 'active' : ''}`}>
         <li>
           <a href="#home">Home</a>
         </li>
