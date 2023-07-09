@@ -19,16 +19,3 @@ a {
 li {
   list-style: none;
 }
-
-
-@media (max-width: 860px) {
-  body {
-    margin: 0 40px;  
-  }
-}
-
-@media (max-width: 460px) {
-  body {
-    margin: 0 0;  
-  }
-}

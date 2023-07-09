@@ -14,7 +14,7 @@ const Nav = () => {
       <div className="hamburger-icon" onClick={handleToggle}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
-      <ul className={`menu ${isOpen ? 'active' : ''}`}>
+      <ul className={`menu ${isOpen ? "active" : ""}`}>
         <li>
           <a href="#home">Home</a>
         </li>

@@ -1,7 +1,7 @@
 nav {
-  margin: 10px; 
+  margin: 10px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .hamburger-icon {
@@ -10,17 +10,11 @@ nav {
 
 .menu {
   display: flex;
+  align-items: start;
   gap: 30px;
 }
 
 @media (max-width: 860px) {
-  .menu {
-    flex-direction: column;
-    gap: 0;
-  }
-}
-
-@media (max-width: 450px) {
   .menu {
     display: none;
   }
@@ -32,5 +26,7 @@ nav {
   .menu.active {
     display: flex;
     flex-direction: column;
+    position: absolute;
+    gap: 0;
   }
 }
