@@ -1,7 +1,6 @@
-nav {
+.nav {
   margin: 10px;
   display: flex;
-  /* flex-wrap: wrap; */
 }
 
 .hamburger-icon {
@@ -10,7 +9,7 @@ nav {
 
 .menu {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 30px;
 }
 
@@ -26,7 +25,14 @@ nav {
   .menu.active {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    gap: 0;
+    position: fixed;
+    align-items: center;
+    top: 35px;
+    left: 0px;
+    background-color: white;
+    min-height: 100vh;
+    min-width: 100vw;
+    padding-top: 25px;
+    gap: 15px;
   }
 }

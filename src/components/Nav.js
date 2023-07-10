@@ -1,6 +1,7 @@
 import "../styles/Nav.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,13 +11,13 @@ const Nav = () => {
   };
 
   return (
-    <nav>
+    <nav className="nav">
       <div className="hamburger-icon" onClick={handleToggle}>
         {isOpen ? <FaTimes /> : <FaBars />}
       </div>
       <ul className={`menu ${isOpen ? "active" : ""}`}>
         <li>
-          <a href="#home">Home</a>
+          <Link to="/">Home</Link>
         </li>
         <li>
           <a href="#about">About</a>
@@ -25,10 +26,10 @@ const Nav = () => {
           <a href="#menu">Menu</a>
         </li>
         <li>
-          <a href="#reservations">Reservations</a>
+          <Link to="/booking">Reservations</Link>
         </li>
         <li>
-          <a href="#orderonline">Order Online</a>
+          <a href="#orderonline">Order&nbsp;Online</a>
         </li>
         <li>
           <a href="#login">Login</a>

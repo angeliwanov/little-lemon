@@ -1,11 +1,11 @@
-header {
+.header {
   display: flex;
-  flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
 }
 
 @media (max-width: 860px) {
-  header {
+  .header {
     margin-top: 10px;
   }
 }
