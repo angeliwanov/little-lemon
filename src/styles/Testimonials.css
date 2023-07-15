@@ -1,0 +1,17 @@
+.test {
+  text-align: center;
+}
+
+.person {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 860px) {
+  .person {
+    grid-template-columns: 120px 120px;
+    gap: 30px;
+  }
+}

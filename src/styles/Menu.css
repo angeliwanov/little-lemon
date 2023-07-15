@@ -1,0 +1,21 @@
+.menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.specials {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 860px) {
+  .specials {
+    grid-template-columns: 260px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

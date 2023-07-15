@@ -1,0 +1,32 @@
+.special {
+  border-radius: 16px;
+  background-color: #edefee;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.spec-img {
+  width: 260px;
+  height: 180px;
+  border-radius: 16px 16px 0 0;
+}
+
+.spec-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.description {
+  width: 15rem;
+  padding-left: 10px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.order {
+  padding-left: 10px;
+}

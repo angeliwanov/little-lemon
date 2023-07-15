@@ -1,0 +1,17 @@
+.p-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.review {
+  width: 15rem;
+  text-align: left;
+}
+
+@media (max-width: 860px) {
+  .review {
+    width: 5rem;
+  }
+}
