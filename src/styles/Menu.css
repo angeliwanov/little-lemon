@@ -8,14 +8,14 @@
 
 .specials {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 260px);
+  justify-content: center;
   gap: 10px;
 }
 
 @media (max-width: 860px) {
   .specials {
     grid-template-columns: 260px;
-    justify-content: center;
     margin-top: 20px;
   }
 }

@@ -2,12 +2,12 @@
   width: 100px;
   height: 100px;
   border-radius: 16px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .review {
-  width: 15rem;
-  text-align: left;
+  font-size: 16px;
+  width: 10rem;
 }
 
 @media (max-width: 860px) {
