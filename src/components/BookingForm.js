@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function BookingForm({ availableTimes }) {
+function BookingForm({ availableTimes, dispatchTimes }) {
   const [reservations, setReservations] = useState([]);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -37,7 +37,10 @@ function BookingForm({ availableTimes }) {
       <input
         required
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={(e) => {
+          setDate(e.target.value);
+          dispatchTimes({ type: "UPDATE" });
+        }}
         type="date"
         id="res-date"
       ></input>
@@ -49,9 +52,7 @@ function BookingForm({ availableTimes }) {
         name=""
         onChange={(e) => setTime(e.target.value)}
       >
-        <option selected value="">
-          -- Please select time --
-        </option>
+        <option value="">-- Please select time --</option>
         {availableTimes.map((time) => (
           <option key={time}>{time}</option>
         ))}
@@ -71,6 +72,7 @@ function BookingForm({ availableTimes }) {
         placeholder="Birthday, Anniversary ..."
         text="text"
         id="occasion"
+        value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
       ></input>
       <button type="submit" value="Make Your reservation">
