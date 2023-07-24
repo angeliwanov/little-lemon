@@ -13,7 +13,7 @@ function Hero() {
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <button onClick={() => reserveTable("/booking")}>
+        <button aria-label="On Click" onClick={() => reserveTable("/booking")}>
           Reserve a table
         </button>
       </div>

@@ -30,7 +30,9 @@ function Menu() {
     <div>
       <div className="menu-top">
         <h1 className="menu-h1">This week's specials!</h1>
-        <button className="order-btn">Online Menu</button>
+        <button aria-label="On Click" className="order-btn">
+          Online Menu
+        </button>
       </div>
       <div className="specials">
         <Special specials={specials} />

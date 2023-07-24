@@ -82,6 +82,7 @@ export default function BookingForm({
           }
         ></input>
         <button
+          aria-label="On Click"
           disabled={
             !formData.date || !formData.time || !formData.guests
               ? "disabled"
