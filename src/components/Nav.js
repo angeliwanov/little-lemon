@@ -17,7 +17,7 @@ const Nav = () => {
       </div>
       <ul className={`menu ${isOpen ? "active" : ""}`}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/little-lemon">Home</Link>
         </li>
         <li>
           <a href="#about">About</a>

@@ -14,7 +14,7 @@ function App() {
     <React.Fragment>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/little-lemon" element={<HomePage />}></Route>
         <Route
           path="/booking"
           element={
