@@ -1,22 +1,75 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./components/BookingForm";
-import { initializeTimes, updateTimes } from "./pages/BookingPage";
+import BookingPage from "./pages/BookingPage";
+import { MemoryRouter } from "react-router-dom";
 
 test('renders the "Choose date" label', () => {
-  render(<BookingForm availableTimes={[]} />);
+  const formData = {
+    date: "2023-07-24",
+    time: "",
+    guests: 0,
+    occasion: "",
+  };
 
-  const linkElement = screen.getByText(/Choose date/i);
+  render(<BookingForm availableTimes={[]} formData={formData} />);
 
-  expect(linkElement).toBeInTheDocument();
+  const chooseDateLabel = screen.getByText(/Choose date/i);
+
+  expect(chooseDateLabel).toBeInTheDocument();
 });
 
-test("initializeTimes should return initial times", () => {
-  const initialTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
-  expect(initializeTimes()).toEqual(initialTimes);
+test("should initialize availableTimes correctly", () => {
+  render(
+    <MemoryRouter>
+      <BookingPage reservations={[]} setReservations={() => {}} />
+    </MemoryRouter>
+  );
+
+  const availableTimes = screen.getAllByRole("option");
+
+  expect(availableTimes).toHaveLength(7);
+  expect(availableTimes[0]).toHaveTextContent("-- Please select time --");
+  expect(availableTimes[1]).toHaveTextContent("17:00");
+  expect(availableTimes[2]).toHaveTextContent("18:00");
+  expect(availableTimes[3]).toHaveTextContent("19:00");
+  expect(availableTimes[4]).toHaveTextContent("20:00");
+  expect(availableTimes[5]).toHaveTextContent("21:00");
+  expect(availableTimes[6]).toHaveTextContent("22:00");
 });
 
-test("updateTimes should return same state when action is not recognized", () => {
-  const dummyState = ["17:00", "18:00", "19:00"];
-  const dummyAction = { type: "UPDATE" };
-  expect(updateTimes(dummyState, dummyAction)).toEqual(dummyState);
+test("should update availableTimes correctly", () => {
+  const reservations = [
+    {
+      date: "2023-07-24",
+      time: "17:00",
+      guests: 1,
+      occasion: "Birthday",
+    },
+    {
+      date: "2023-07-24",
+      time: "19:00",
+      guests: 1,
+      occasion: "Birthday",
+    },
+  ];
+  render(
+    <MemoryRouter>
+      <BookingPage reservations={reservations} setReservations={() => {}} />
+    </MemoryRouter>
+  );
+
+  const dateInput = screen.getByLabelText("Choose date");
+
+  fireEvent.change(dateInput, {
+    target: { value: "2023-07-24" },
+  });
+
+  const availableTimes = screen.getAllByRole("option");
+
+  expect(availableTimes).toHaveLength(5);
+  expect(availableTimes[0]).toHaveTextContent("-- Please select time --");
+  expect(availableTimes[1]).toHaveTextContent("18:00");
+  expect(availableTimes[2]).toHaveTextContent("20:00");
+  expect(availableTimes[3]).toHaveTextContent("21:00");
+  expect(availableTimes[4]).toHaveTextContent("22:00");
 });

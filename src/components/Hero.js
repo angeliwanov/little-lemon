@@ -1,6 +1,9 @@
 import "../styles/Hero.css";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const reserveTable = useNavigate();
+
   return (
     <div className="hero-container">
       <div className="hero-left">
@@ -10,7 +13,9 @@ function Hero() {
           We are a family owned Mediterranean restaurant, focused on traditional
           recipes served with a modern twist.
         </p>
-        <button>Reserve a table</button>
+        <button onClick={() => reserveTable("/booking")}>
+          Reserve a table
+        </button>
       </div>
       <div className="img-container">
         <img

@@ -18,7 +18,8 @@ a {
   font-size: 20px;
 }
 
-p {
+p,
+label {
   text-decoration: none;
   font-family: "Karla", sans-serif;
   font-size: 20px;

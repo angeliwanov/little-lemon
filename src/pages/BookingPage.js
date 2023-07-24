@@ -1,21 +1,44 @@
 import BookingForm from "../components/BookingForm";
 import "../styles/BookingPage.css";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
+import { fetchAPI, submitAPI } from "../api";
+import { useNavigate } from "react-router-dom";
 
-export function updateTimes(state, action) {
-  switch (action.type) {
-    case "UPDATE":
-      return [...state];
-    default:
-      return state;
+function BookingPage({ reservations, setReservations }) {
+  const [formData, setFormData] = useState({
+    date: "",
+    time: "",
+    guests: 0,
+    occasion: "",
+  });
+
+  const isSubmitted = submitAPI(formData);
+  const navigate = useNavigate();
+  function submitForm() {
+    if (isSubmitted) {
+      navigate("/confirmed");
+    }
   }
-}
 
-export function initializeTimes() {
-  return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"];
-}
+  function initializeTimes() {
+    return fetchAPI();
+  }
 
-function BookingPage() {
+  function updateTimes(state, action) {
+    switch (action.type) {
+      case "UPDATE":
+        let newState = fetchAPI();
+        for (let reservation of reservations) {
+          if (reservation.date === formData.date) {
+            newState = newState.filter((time) => time !== reservation.time);
+          }
+        }
+        return newState;
+      default:
+        return state;
+    }
+  }
+
   const [availableTimes, dispatchTimes] = useReducer(
     updateTimes,
     initializeTimes()
@@ -25,6 +48,11 @@ function BookingPage() {
     <BookingForm
       availableTimes={availableTimes}
       dispatchTimes={dispatchTimes}
+      submitForm={submitForm}
+      reservations={reservations}
+      setReservations={setReservations}
+      formData={formData}
+      setFormData={setFormData}
     />
   );
 }
