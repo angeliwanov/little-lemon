@@ -73,3 +73,60 @@ test("should update availableTimes correctly", () => {
   expect(availableTimes[3]).toHaveTextContent("21:00");
   expect(availableTimes[4]).toHaveTextContent("22:00");
 });
+
+test("should not submit the form if required fields are missing", () => {
+  const availableTimes = ["17:00", "18:00"];
+  const dispatchTimes = jest.fn();
+  const setReservations = jest.fn();
+  const submitForm = jest.fn();
+  render(
+    <BookingForm
+      availableTimes={availableTimes}
+      dispatchTimes={dispatchTimes}
+      setReservations={setReservations}
+      reservations={[]}
+      formData={{ date: "", time: "", guests: 0, occasion: "" }}
+      setFormData={() => {}}
+      submitForm={submitForm}
+    />
+  );
+  const reserveButton = screen.getByText("Reserve");
+  fireEvent.click(reserveButton);
+
+  expect(setReservations).not.toHaveBeenCalled();
+  expect(submitForm).not.toHaveBeenCalled();
+});
+
+test("should submit the form if all required fields are provided", () => {
+  const availableTimes = ["17:00", "18:00"];
+  const dispatchTimes = jest.fn();
+  const setReservations = jest.fn();
+  const submitForm = jest.fn();
+  let formDataState = { date: "", time: "", guests: 0, occasion: "" };
+  const setFormData = (newData) => {
+    formDataState = { ...formDataState, ...newData };
+  };
+  render(
+    <BookingForm
+      availableTimes={availableTimes}
+      dispatchTimes={dispatchTimes}
+      setReservations={setReservations}
+      reservations={[]}
+      formData={formDataState}
+      setFormData={setFormData}
+      submitForm={submitForm}
+    />
+  );
+  const dateInput = screen.getByLabelText("Choose date");
+  const timeSelect = screen.getByLabelText("Choose time");
+  const guestsInput = screen.getByLabelText("Number of guests");
+
+  fireEvent.change(dateInput, { target: { value: "2023-07-24" } });
+  fireEvent.change(timeSelect, { target: { value: "17:00" } });
+  fireEvent.change(guestsInput, { target: { value: "5" } });
+
+  const form = screen.getByTestId("booking-form"); // you need to add the data-testid attribute to your form
+  fireEvent.submit(form);
+
+  expect(submitForm).toHaveBeenCalled();
+});

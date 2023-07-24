@@ -9,7 +9,6 @@ export default function BookingForm({
 }) {
   function handleSubmit(e) {
     e.preventDefault();
-    if (!formData.date || !formData.time || !formData.guests) return;
     setReservations([...reservations, formData]);
     submitForm();
     setFormData({ date: "", time: "", guests: 0, occasion: "" });
@@ -26,6 +25,7 @@ export default function BookingForm({
     >
       <form
         onSubmit={handleSubmit}
+        data-testid="booking-form"
         style={{
           display: "grid",
           maxWidth: "200px",
@@ -81,7 +81,15 @@ export default function BookingForm({
             setFormData({ ...formData, occasion: e.target.value })
           }
         ></input>
-        <button type="submit" value="Make Your reservation">
+        <button
+          disabled={
+            !formData.date || !formData.time || !formData.guests
+              ? "disabled"
+              : ""
+          }
+          type="submit"
+          value="Make Your reservation"
+        >
           Reserve
         </button>
       </form>
